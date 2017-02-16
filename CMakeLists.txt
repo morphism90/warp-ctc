@@ -23,7 +23,7 @@ MESSAGE(STATUS "cuda found ${CUDA_FOUND}")
 option(WITH_GPU "compile warp-ctc with cuda." ${CUDA_FOUND})
 option(WITH_OMP "compile warp-ctc with openmp." ON)
 
-if(NOT WITH_OMP)
+IF (NOT WITH_OMP)
     add_definitions(-DCTC_DISABLE_OMP)
 endif()
 
@@ -34,7 +34,7 @@ set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -gencode arch=compute_35,code=sm_35")
 set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -gencode arch=compute_50,code=sm_50")
 set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -gencode arch=compute_52,code=sm_52")
 
-if (NOT APPLE)
+IF (NOT APPLE)
     set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} --std=c++11")
     set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -Xcompiler -fopenmp")
 ENDIF()
@@ -110,7 +110,7 @@ IF (WITH_GPU)
 ELSE()
     MESSAGE(STATUS "Building shared library with no GPU support")
 
-    if (NOT APPLE)
+    IF (NOT APPLE)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2")
     ENDIF()
 
